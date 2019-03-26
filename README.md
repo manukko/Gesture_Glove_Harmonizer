@@ -33,5 +33,5 @@ In the lower right canvas it is represented the spectrum of the audio signal gen
 - https://threejs.org/
 - https://vuejs.org/
 
-## PROMO Video
+## PROMO Video (in italian)
 https://1drv.ms/v/s!AnnhkH9OXjhOh91YWXE5xGYWvUX_gg
