@@ -1666,7 +1666,7 @@ var offsetY = -21;
 
 var font_loader = new THREE.FontLoader(); // load the hand model
 
-loader.load("/js/hand-for-lane.json",
+loader.load("./js/hand-for-lane.json",
 
 // onLoad
 function ( obj ) {
