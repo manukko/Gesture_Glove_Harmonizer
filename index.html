@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gesture Glove Harmonizer</title>
+
+      <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/85/three.min.js"></script>
+
+<div id="harmonizer">
+  <div id = "top-part">
+  <div class="frame">
+  <div id="result">
+    <canvas class = "hand_canvas"></canvas>
+  </div>
+  <div id = "gestures_info">
+    <div id = "left_led">
+      <div class = "led-yellow" :class="ledOn ? 'led-active' : ''"></div>
+    </div>
+    <span class = "labels led_label">
+      <div id ="label_left" >left: {{labelHarm}}</div>
+      <div id="label_octave_left">{{labelOct}}</div>
+    </span>
+    <div id = "right_led">
+      <div class = "led-yellow" :class="ledOn ? 'led-active' : ''"></div>
+    </div>
+    <span class = "labels led_label">
+      <div id ="label_right" >right: {{labelHarm}}</div>
+      <div id="label_octave_right">{{labelOct}}</div>
+    </span>
+    <div id = "up_led">
+      <div class = "led-yellow" :class="ledOn ? 'led-active' : ''"></div>
+    </div>
+    <span class = "labels led_label">
+      <div id ="label_up" >up: {{labelHarm}}</div>
+      <div id="label_octave_up">{{labelOct}}</div>
+    </span>
+    <div id = "down_led">
+      <div class = "led-yellow" :class="ledOn ? 'led-active' : ''"></div>
+    </div>
+    <span class = "labels led_label">
+      <div id ="label_down" >down: {{labelHarm}}</div>
+      <div id="label_octave_down">{{labelOct}}</div>
+    </span>
+  </div>
+</div>
+  <div id="app">
+  <envelope-generator
+    :width="400"
+    :height="200"
+    :attack="form.attackTime"
+    :decay="form.decayTime"
+    :sustain="form.sustainLevel"
+    :release="form.releaseTime">
+  </envelope-generator>
+
+
+  <form class="envelope-controller">
+    <div>
+      <label class = "labels">Attack</label>
+      <input type="range" class = "slider" min="0" max="1" step="0.01" v-model.number="form.attackTime">
+    </div>
+    <div>
+      <label class = "labels">Decay</label>
+      <input type="range" class = "slider" min="0.001" max="1" step="0.01" v-model.number="form.decayTime">
+    </div>
+    <div>
+      <label class = "labels">Sustain</label>
+      <input type="range" class = "slider" min="0" max="1" step="0.01" v-model.number="form.sustainLevel">
+    </div>
+    <div>
+      <label class = "labels">Release</label>
+      <input type="range" class = "slider" min="0" max="1" step="0.01" v-model.number="form.releaseTime">
+    </div>
+  </form>
+  </div>
+</div>
+
+  <div id="upper-part">
+    <div id = "harmonics_menu">
+      <div id="dropmenu_left">
+  	     <dropdown :text = 'text' :on-click='changeHarmonic' :items='harmonics' ></dropdown>
+       </div>
+       <div id="dropmenu_right">
+   	     <dropdown :text = 'text' :on-click='changeHarmonic' :items='harmonics' ></dropdown>
+        </div>
+        <div id="dropmenu_up">
+    	     <dropdown :text = 'text' :on-click='changeHarmonic' :items='harmonics' ></dropdown>
+         </div>
+         <div id="dropmenu_down">
+     	     <dropdown :text = 'text' :on-click='changeHarmonic' :items='harmonics' ></dropdown>
+          </div>
+          <div id="dropmenu">
+      	     <dropdown :text = 'text' :on-click='changeInstrument' :items='instruments' ></dropdown>
+      	     <p class = "selected_instrument">selected instrument: <span>{{activeInstrument}}</span></p>
+          </div>
+    </div>
+
+    <div id = "octaves_menu">
+      <div id="dropmenu_octave_left" class = "dropmenu_octaves" style ="margin-left: 1%;">
+  	     <dropdown :text = 'text' :on-click='changeOctave' :items='octaves' ></dropdown>
+       </div>
+       <div id="dropmenu_octave_right" class = "dropmenu_octaves">
+   	     <dropdown :text = 'text' :on-click='changeOctave' :items='octaves' ></dropdown>
+        </div>
+        <div id="dropmenu_octave_up" class = "dropmenu_octaves">
+    	     <dropdown :text = 'text' :on-click='changeOctave' :items='octaves' ></dropdown>
+         </div>
+         <div id="dropmenu_octave_down" class = "dropmenu_octaves">
+     	     <dropdown :text = 'text' :on-click='changeOctave' :items='octaves' ></dropdown>
+          </div>
+    </div>
+  </div>
+  <div class = "bt_part">
+  <button type="button" id = "bt_button" class="pair_btn labels" style="font-size:16px; color: #b7b2ae;">
+    Pair
+  </button>
+  <div id="bt-label" class="labels">{{bt_log}}</div>
+  </div>
+  <div id = "lower-part">
+    <div class = "volumes">
+    <div class = "master-volume"><input id = "master_volume" class = "slider" type="range" min="0" max="100" step="1" v-model="m_volume"></input>
+  </div>
+  <div class = "h1-volume"><input id = "h1_volume" class = "slider" type="range" min="0" max="100" step="1" v-model="h1_volume"></input>
+  </div>
+<div class = "h2-volume"><input id = "h2_volume" class = "slider" type="range" min="0" max="100" step="1" v-model="h2_volume"></input>
+  </div>
+  <div class = "volume_labels">
+    <span class = "labels volumes_lab" style = "margin-left: 0;">Master</span>
+    <span class = "labels volumes_lab">L/R harm</span>
+    <span class = "labels volumes_lab">U/D harm</span>
+  </div>
+</div>
+    <canvas id="canvas"></canvas>
+</div>
+
+  <template id="adsr">
+  <svg xmlns="http://www.w3.org/2000/svg" class = "fl-studio-envelope__visualizer" baseProfile="full" :width="width" :height="height+6" preserveAspectRatio="xMinYMid slice">
+
+    <path :d="path" stroke="#4eccff" stroke-width="3" fill="#21272b"></path>
+
+    <circle class="origin" cx="7" :cy="height-11" r="6" fill="#284554" stroke="#4eccff" stroke-width="2"></circle>
+    <circle class="attack" :cx="array[0]" :cy="array[1]" r="6" fill="#284554" stroke="#4eccff" stroke-width="2"></circle>
+    <circle class="decay" :cx="array[2]" :cy="array[3]" r="6" fill="#284554" stroke="#4eccff" stroke-width="2"></circle>
+    <circle class="sustain" :cx="array[4]" :cy="array[5]" r="6" fill="#284554" stroke="#4eccff" stroke-width="2"></circle>
+    <circle class="release" :cx="array[6]" :cy="array[7]" r="6" fill="#284554" stroke="#4eccff" stroke-width="2"></circle>
+
+  </svg>
+</template>
+</div>
+
+    <script  src="js/index.js"></script>
+
+</body>
+
+</html>
