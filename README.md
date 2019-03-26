@@ -6,7 +6,7 @@ The WebApp can be also used without the connection of the BBC micro:bit.
 
 
 ## Prequisites:
-- Ultimate Gesture GLOVE white version by Balenciaga (aka BBC micro:bit)
+- Ultimate Gesture GLOVE white version (aka BBC micro:bit)
 - MIDI Keyboard
 
 ## Running the app
