@@ -32,3 +32,6 @@ In the lower right canvas it is represented the spectrum of the audio signal gen
 ## Framework used
 - https://threejs.org/
 - https://vuejs.org/
+
+## PROMO Video
+https://1drv.ms/v/s!AnnhkH9OXjhOh91YWXE5xGYWvUX_gg
