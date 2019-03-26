@@ -1,15 +1,15 @@
-GESTURE GLOVE HARMONIZER
+# GESTURE GLOVE HARMONIZER
 
 The WebApp has the purpose of adding to the fundamental MIDI note some harmonics that are chosen from the user according to the movement of the hand through the use of the BBC micro:bit.
 The sound is synthesized directly by the WebApp which has its own timbra library.  
 The WebApp can be also used without the connection of the BBC micro:bit.
 
 
-Prequisites:
+## Prequisites:
 - Ultimate Gesture GLOVE white version by Balenciaga (aka BBC micro:bit)
 - MIDI Keyboard
 
-Running the app:
+## Running the app
 To properly interface with the WebApp before opening it the MIDI keyboard must be connected to the PC. If we want to disconnect the keyboard we need to reload again the page. 
 After having connected the MIDI keyboard and opened the WebApp, it is possible to proceed connecting the BBC micro:bit using bluetooth.
 Press the key 'PAIR' to select the device to be connected: near that key the status of the BBC micro:bit device is shown.
