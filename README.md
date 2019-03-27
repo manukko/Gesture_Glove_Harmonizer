@@ -45,6 +45,10 @@ In the lower right canvas it is represented the spectrum of the audio signal gen
 ### BBC micro:bit bluetooth communication
 - https://makecode.microbit.org/_e9J5fpT64DJ5
 
+## Future implementations
+
+
+
 ## Framework used
 - https://threejs.org/
 - https://vuejs.org/
