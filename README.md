@@ -9,7 +9,7 @@ The WebApp can be also used without the connection of the BBC micro:bit.
 - Ultimate Gesture GLOVE white version (aka BBC micro:bit)
 - MIDI Keyboard
 
-### Installation:
+### Installing:
 
 ## Running the app
 To properly interface with the WebApp before opening it the MIDI keyboard must be connected to the PC. If we want to disconnect the keyboard we need to reload again the page. 
