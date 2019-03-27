@@ -43,6 +43,11 @@ In the lower right canvas it is represented the spectrum of the audio signal gen
 - Frenquency peaks canvas
 
 ### BBC micro:bit bluetooth communication
+From 2017,thanks to the Web Bluetooth API of Google Chrome it is possible to connect to an application a BLE (Bluetooth Low Energy) device reading information from the it and receivings notifications when certain values change. The connection to the device is only possible as a  result of a voluntary action by the user (as in this case a click on the proper button on the graphical interface).
+- https://www.html.it/articoli/introduzione-alle-web-bluetooth-api/
+In particular, in order to transmit data to handle the harmonics to be reproduced, the accellerometer service has been used. It is worth mentioning the fact that a BLE service eats too much RAM memory to let the button service from be used simultaneously with it without causing an overflow error. This would have prevented activating and deactivating the microprocessor without the need of shutting it down and pairing it again. Anyway accellerometer values on the three cartesian axis (properly converted into roll and pitch informations) are sufficient for our task.The bluetooth code pairing implementation has been developed by Bitty Software:
+- http://www.bittysoftware.com/downloads.html
+The code executed by the BBC micro:bit can be found here:
 - https://makecode.microbit.org/_e9J5fpT64DJ5
 
 ## Future implementations
