@@ -1345,6 +1345,7 @@ if (navigator.requestMIDIAccess) {
 var midi, data;
 var temp;
 var c = new AudioContext();
+c.resume();
 
 var notePresent = 0;
 var bufferSize = 4096;
