@@ -46,7 +46,8 @@ In the lower right canvas it is represented the spectrum of the audio signal gen
 - https://makecode.microbit.org/_e9J5fpT64DJ5
 
 ## Future implementations
-
+prova
+https://github.com/manukko/pitch_detection_future_work?fbclid=IwAR1jirUJ5YyZACAgVgIpi74W2hIuCxlgXkoYg0ED2AnhgUOZZNeTjbY_OXQ
 
 
 ## Framework used
