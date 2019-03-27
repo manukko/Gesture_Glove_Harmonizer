@@ -46,7 +46,7 @@ In the lower right canvas it is represented the spectrum of the audio signal gen
 - https://makecode.microbit.org/_e9J5fpT64DJ5
 
 ## Future implementations
-prova
+One next step will be to integrate in this project a client-side JavaScript implementation, in a browser environment, of the Pitch shifting operation for a human voice recorded directly from a live input such as a microphone. Pitch shifting is a widely used operation, as an example, in all major commercial and open source Digital Audio Workstations and Mixing Softwares. There are algorithms that work in time domain, like Overlap and Add (OLA), Waveform Similarity based OLA (WSOLA) and delay line modulation, and others that work in the frequency domain, like the Phase Vocoder and Spectral Modelling. At the moment, ScriptProcessorNodes and AudioWorkers are operating on the time domain buffer data, on which FFT is computed. For what concerns frequency operations, like pitch shifting, the burden of the computational cost is due to the javascript implementation of FFT. A well-done improvement of this work would surely consist in analyzing computational costs and existence of audio artefacts in the implementation of such algorithms in the Web-audio-API itself. A simple pitch detection algorithm for voice input, as a starting point, is shown hereafter. 
 - Code:
 https://github.com/manukko/pitch_detection_future_work?fbclid=IwAR1jirUJ5YyZACAgVgIpi74W2hIuCxlgXkoYg0ED2AnhgUOZZNeTjbY_OXQ
 - Try it:
