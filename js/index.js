@@ -31,6 +31,8 @@ var actual_octaveDown = 1/2;
 
 var roll = 0;
 var pitch = 0;
+
+// micro:bit variables representing UUID for BLE protocol
 var ACCEL_SRV = 'e95d0753-251d-470a-a062-fa1922dfa9a8'
 var ACCEL_DATA = 'e95dca4b-251d-470a-a062-fa1922dfa9a8'
 var ACCEL_PERIOD = 'e95dfb24-251d-470a-a062-fa1922dfa9a8'
@@ -54,6 +56,7 @@ var TEMP_SRV = 'e95d6100-251d-470a-a062-fa1922dfa9a8'
 var TEMP_DATA = 'e95d9250-251d-470a-a062-fa1922dfa9a8'
 var TEMP_PERIOD = 'e95d1b25-251d-470a-a062-fa1922dfa9a8'
 
+// sounds frequency samples using MATLAB script
 var SINWAVE1f = [1.000];
 var SINWAVE1a = [250];
 
@@ -310,7 +313,8 @@ function getSupportedProperties(characteristic) {
 
 /*----------------VUE PART----------------*/
 
-var btLabel = new Vue({ // bluetooth log information
+// bluetooth log information
+var btLabel = new Vue({ 
   el: '#bt-label',
   data: {
     bt_log: "Device not connected"
@@ -1106,7 +1110,7 @@ var Dropdown = new Vue({
                                               Envelope.form.releaseTime = 0.19;
 
                                               break;
-      }
+      			}
 		}
 	}
 });
@@ -1282,6 +1286,7 @@ H2_volume = new Vue({
 });
 
 /*----------------MICROBIT bluetooth pairing----------------*/
+
 var microbit = new uBit();
 
 microbit.onConnect(function(){
@@ -1409,16 +1414,17 @@ function attack(midiNote, volume) {
   notePresent++; // noise variable
 
   //check if harmonics (to be played) are present or not
+  // h represents the first harmonic (Left/Right gesture), hh the second harmonic (Up/Down gesture)
   if(h != 0 && hh != 0 ){
     var vect2 = vect1.map(function(element) {
-    return element*h;//invece che *2 metti il valore microbit
+    return element*h;
   });
   var amp2 = amp1.map(function(element) {
     return element*(h1_vol/100);
   });
 
     var vect3 = vect1.map(function(element) {
-    return element*hh;//invece che *2 metti il valore microbit
+    return element*hh;
   });
   var amp3 = amp1.map(function(element) {
     return element*(h2_vol/100);
@@ -1468,7 +1474,7 @@ function attack(midiNote, volume) {
 
       gp.gain.value = noisegain*(master_vol/50);
 
-// iter to create the timbre summing sinusoids
+      // iteration to create the timbre summing sinusoids
       for(i=0;i<max;i++){
         o[i] = c.createOscillator();
       }
@@ -1505,11 +1511,11 @@ function attack(midiNote, volume) {
       // same as above with volume
       for(i=0;i<max;i++){
         if(freq*vect[i]<22000){
-          ha[i] = amp[i]; //vettore dei volumi
+          ha[i] = amp[i]; //volume array
         }
 
         else {
-          ha[i] = 0;//vettore dei multipli delle frequenze
+          ha[i] = 0; //multiple of fundamental frequency array
         }
 
       }
@@ -1669,8 +1675,8 @@ var font_loader = new THREE.FontLoader(); // load the hand model
 
 loader.load("./js/hand-for-lane.json",
 
-// onLoad
-function ( obj ) {
+	// onLoad
+	function ( obj ) {
 		myObj = obj;
 		scene.add( obj );
 		myObj.rotation.x = offsetX;
